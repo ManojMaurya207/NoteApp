@@ -1,17 +1,15 @@
-//
-//  NoteAppApp.swift
-//  NoteApp
-//
-//  Created by Manoj on 29/09/25.
-//
-
 import SwiftUI
 
 @main
 struct NoteAppApp: App {
+    @StateObject var listViewModel : ListViewModel = ListViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ListView()
+            }
+            .environmentObject(listViewModel)
         }
     }
 }
