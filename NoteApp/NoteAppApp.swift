@@ -7,7 +7,7 @@ struct NoteAppApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ListView()
+                MainScreen()
             }
             .environmentObject(listViewModel)
         }

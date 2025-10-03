@@ -18,7 +18,7 @@ struct EmptyItemView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.bottom,30)
-                NavigationLink(destination: AddView(), label: {
+                NavigationLink(destination: AddNoteScreen(), label: {
                     Text("Add Something")
                         .foregroundColor(.white)
                         .font(.headline)

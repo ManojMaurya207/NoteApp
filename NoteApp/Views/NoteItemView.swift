@@ -10,7 +10,7 @@ import SwiftUI
 
 
 
-struct ListRowView: View {
+struct NoteItemView: View {
     let item : NoteItemModel
     @EnvironmentObject var listViewModel : ListViewModel
     var body: some View {
@@ -36,8 +36,8 @@ struct ListRowView: View {
     var item2: NoteItemModel = NoteItemModel(title: "Second item", noteText: "", isCompleted: true)
     
     Group{
-        ListRowView(item:item1)
-        ListRowView(item:item2)
+        NoteItemView(item:item1)
+        NoteItemView(item:item2)
     }
 }
 

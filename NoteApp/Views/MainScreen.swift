@@ -3,7 +3,7 @@ import SwiftUICore
 import SwiftUI
 
 
-struct ListView : View {
+struct MainScreen : View {
     @EnvironmentObject var listViewModel : ListViewModel
     var body: some View {
         ZStack{
@@ -15,9 +15,9 @@ struct ListView : View {
                     ForEach(listViewModel.items,){ item in
                         NavigationLink(
                             destination:
-                                AddView(currentItem: item).environmentObject(listViewModel))
+                                AddNoteScreen(currentItem: item).environmentObject(listViewModel))
                         {
-                            ListRowView(item: item)
+                            NoteItemView(item: item)
                         }
                     }
                     .onDelete(perform: listViewModel.deleteItem)
@@ -30,7 +30,7 @@ struct ListView : View {
         .navigationBarItems(
             leading: EditButton(),
             trailing: NavigationLink("Add", destination: {
-                AddView()
+                AddNoteScreen()
             })
         )
     }
@@ -40,14 +40,14 @@ struct ListView : View {
 
 #Preview {
     NavigationView {
-        ListView()
+        MainScreen()
     }.environmentObject(ListViewModel())
 }
 
 
 #Preview {
     NavigationView {
-        ListView()
+        MainScreen()
     }.environmentObject(ListViewModel())
         .preferredColorScheme(.dark)
 }

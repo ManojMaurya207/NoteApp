@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 
-struct AddView: View {
+struct AddNoteScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var listViewModel: ListViewModel
 
@@ -79,7 +79,7 @@ struct AddView: View {
 
 #Preview {
     NavigationView {
-        AddView()
+        AddNoteScreen()
     }
     .environmentObject(ListViewModel())
 }
