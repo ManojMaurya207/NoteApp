@@ -27,7 +27,7 @@ class ListViewModel : ObservableObject {
         items.move(fromOffsets: from, toOffset: to)
     }
     
-    func addItem(text: String) throws {
+    func addItem(text: String,note: String) throws {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard !trimmed.isEmpty else { throw NoteValidationError.empty }
@@ -36,8 +36,23 @@ class ListViewModel : ObservableObject {
         guard !items.contains(where: { $0.title.caseInsensitiveCompare(trimmed) == .orderedSame })
         else { throw NoteValidationError.duplicate }
         
-        let newItem = NoteItemModel(title: trimmed, noteText: "", isCompleted: false)
+        let newItem = NoteItemModel(title: trimmed, noteText: note, isCompleted: false)
         items.append(newItem)
+    }
+    
+    func updateItem(item: NoteItemModel, newTitle: String, newNote: String) throws {
+        let trimmed = newTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !trimmed.isEmpty else { throw NoteValidationError.empty }
+        guard trimmed.count >= 2 else { throw NoteValidationError.tooShort }
+        guard trimmed.count <= 200 else { throw NoteValidationError.tooLong }
+        
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+            items[index] = NoteItemModel(id: item.id,
+                                         title: trimmed,
+                                         noteText: newNote,
+                                         isCompleted: item.isCompleted)
+        }
     }
 
     func toggleCheck(item : NoteItemModel){
