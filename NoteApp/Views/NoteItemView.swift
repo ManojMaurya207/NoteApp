@@ -5,10 +5,7 @@
 //  Created by Manoj on 30/09/25.
 //
 
-import SwiftUICore
 import SwiftUI
-
-
 
 struct NoteItemView: View {
     let item : NoteItemModel

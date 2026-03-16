@@ -16,21 +16,30 @@ struct AddNoteScreen: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                // Title Field
+
                 TextField("Add Title", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color.secondary.opacity(0.2))
                     .cornerRadius(10)
 
-                // Note Field (multiline)
                 TextEditor(text: $noteText)
-                    .frame(minHeight: 300)
-                    .padding(8)
-                    .background(Color.secondary.opacity(0.2))
-                    .cornerRadius(10)
+                    .font(.body)
+                    .padding(12)
+                    .frame(minHeight: 200)
+                    .background(
+                        Color(uiColor:.secondarySystemBackground)
+                    )
+                    .cornerRadius(12)
 
-                // Save Button
+                if noteText.isEmpty {
+                    Text("Add Note")
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal, 18)
+                        .padding(.vertical, 20)
+                        .allowsHitTesting(false)
+                }
+	
                 Button(action: { saveBtnPressed() }) {
                     Text(currentItem == nil ? "SAVE" : "UPDATE")
                         .frame(height: 55)
